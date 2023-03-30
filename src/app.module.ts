@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserEntity } from './typeorm/entities/user.entity';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 ConfigModule.forRoot()
 
@@ -20,7 +21,8 @@ ConfigModule.forRoot()
       entities: [UserEntity],
       synchronize: true,
     }),
-    UsersModule
+    UsersModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
