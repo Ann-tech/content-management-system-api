@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { User } from './typeorm/entities/user.entity';
+import { UserEntity } from './typeorm/entities/user.entity';
 import { UsersModule } from './users/users.module';
 
 ConfigModule.forRoot()
@@ -17,7 +17,7 @@ ConfigModule.forRoot()
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE,
-      entities: [User],
+      entities: [UserEntity],
       synchronize: true,
     }),
     UsersModule

@@ -1,21 +1,22 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm'
+import * as bcrypt from 'bcrypt'
 
 @Entity({ name: 'users'})
-export class User {
+export class UserEntity {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
-    @Column()
+    @Column({nullable: false})
     firstName: string;
 
-    @Column()
+    @Column({nullable: false})
     lastName: string;
 
-    @Column({ unique: true })
+    @Column({ unique: true, nullable: false })
     email: string;
 
-    @Column()
+    @Column({nullable: false})
     password: string;
 
     @Column()
@@ -23,5 +24,9 @@ export class User {
 
     @Column()
     updatedAt: Date;
+
+    @BeforeInsert()  async hashPassword() {
+        this.password = await bcrypt.hash(this.password, 10);  
+    }
 
 }
