@@ -16,8 +16,8 @@ export class POSTEntity {
     @Column({nullable: false, default: 0})
     state: number;
 
-    @ManyToOne(() => UserEntity, (user) => user.posts)
-    user: UserEntity;
+    @ManyToOne(type => UserEntity)
+    user?: UserEntity;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     createdAt: Date;
