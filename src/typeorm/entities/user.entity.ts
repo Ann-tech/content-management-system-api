@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, OneToMany } from 'typeorm'
 import * as bcrypt from 'bcrypt'
+import { POSTEntity } from './post.entity';
 
 @Entity({ name: 'users'})
 export class UserEntity {
@@ -18,6 +19,9 @@ export class UserEntity {
 
     @Column({nullable: false})
     password: string;
+
+    @OneToMany(() => POSTEntity, (post) => post.user)
+    posts: POSTEntity[];
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     createdAt: Date;

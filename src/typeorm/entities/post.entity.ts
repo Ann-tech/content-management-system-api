@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+import { UserEntity } from './user.entity';
 
 @Entity({ name: 'posts'})
 export class POSTEntity {
@@ -15,6 +16,8 @@ export class POSTEntity {
     @Column({nullable: false, default: 0})
     state: number;
 
+    @ManyToOne(() => UserEntity, (user) => user.posts)
+    user: UserEntity;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     createdAt: Date;
