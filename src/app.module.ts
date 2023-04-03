@@ -7,6 +7,8 @@ import { UserEntity } from './typeorm/entities/user.entity';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { POSTEntity } from './typeorm/entities/post.entity';
+import { PostsController } from './posts/controllers/posts/posts.controller';
+import { PostsModule } from './posts/posts.module';
 
 ConfigModule.forRoot()
 
@@ -23,9 +25,10 @@ ConfigModule.forRoot()
       synchronize: true,
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    PostsModule
   ],
-  controllers: [AppController],
+  controllers: [AppController, PostsController],
   providers: [AppService],
 })
 export class AppModule {}
