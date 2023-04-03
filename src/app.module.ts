@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { UserEntity } from './typeorm/entities/user.entity';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { POSTEntity } from './typeorm/entities/post.entity';
 
 ConfigModule.forRoot()
 
@@ -18,7 +19,7 @@ ConfigModule.forRoot()
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE,
-      entities: [UserEntity],
+      entities: [UserEntity, POSTEntity],
       synchronize: true,
     }),
     UsersModule,
